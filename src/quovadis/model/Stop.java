@@ -1,5 +1,5 @@
 package quovadis.model;
-//ciao
+
 public class Stop {
 	private String title;
 	private String description;
