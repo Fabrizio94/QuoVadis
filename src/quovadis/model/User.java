@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "User.findAll", query = "select u from User u")
-public class User {
+public abstract class User {
 	
 	
 	@Column (nullable = false)
@@ -28,8 +28,6 @@ public class User {
 	@Column (nullable = false)
 	private String email;
 	
-	@OneToMany
-	private Map<Integer,Suggestion> wishList; 
 	
 	 
 		public User(String name, String surname, String username, String password, String email) {
@@ -38,7 +36,6 @@ public class User {
 			this.username = username;
 			this.password = password;
 			this.email = email;
-			wishList = new HashMap<Integer,Suggestion>();
 	}
 
 		public String getName() {

@@ -60,8 +60,8 @@ public class TravelAgency {
 		
 	}
 	
-	public void createUser(String name, String surname, String username, String password, String email) {
-		User u = new User(name,surname,username,password,email);
+	public void createCustomer(String name, String surname, String username, String password, String email) {
+		User u = new Customer(name,surname,username,password,email);
 		userDAOImp.save(emf, u);
 	}
 	
@@ -78,5 +78,13 @@ public class TravelAgency {
 			if(s.getTags().contains(tag))
 				result.put(s.getId(),s);
 		return result;
+	}
+	
+	public void addDeal(Deal d){
+		deals.add(d);
+	}
+	
+	public void addPersonalRequest(PersonalRequest pr){
+		personalRequests.add(pr);
 	}
 }

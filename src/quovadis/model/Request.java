@@ -23,6 +23,16 @@ public abstract class Request {
 	@OneToOne
 	private Customer customer;
 	
+	public Request(Customer customer, String title, String message){
+		this.customer = customer;
+		this.title = title;
+		this.message = message;
+	}
+	
+	public Request(){
+		
+	}
+	
 	public String getTitle(){
 		return this.title;
 	}
@@ -38,4 +48,9 @@ public abstract class Request {
 	public void setMessage(String message){
 		this.message = message;
 	}
+	
+	public Customer getCustomer(){
+		return this.customer;
+	}
+	
 }

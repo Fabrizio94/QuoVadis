@@ -1,6 +1,6 @@
 package quovadis.model;
 
-public class Services {
+public class Service {
 	
 	private double cost;
 	private String typology;
