@@ -2,17 +2,21 @@ package quovadis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
+import quovadis.persistence.RequestDao;
 
-public abstract class Request {
+@Entity
+public class Request {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	@Column(nullable = false)
 	private String title;
@@ -22,6 +26,13 @@ public abstract class Request {
 	
 	@OneToOne
 	private Customer customer;
+	
+	@ManyToOne
+	private Suggestion suggestion;
+	
+	private RequestDao requestDAOImp;
+	
+	EntityManagerFactory emf = EntityManagerSingleton.getInstance();
 	
 	public Request(Customer customer, String title, String message){
 		this.customer = customer;
@@ -51,6 +62,15 @@ public abstract class Request {
 	
 	public Customer getCustomer(){
 		return this.customer;
+	}
+
+	public Suggestion getSuggestion() {
+		return this.suggestion;
+	}
+
+	public void addSuggestion(Suggestion s) {
+		this.suggestion = s;		
+		requestDAOImp.update(emf, this);
 	}
 	
 }

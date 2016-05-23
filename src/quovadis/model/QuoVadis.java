@@ -11,6 +11,7 @@ public class QuoVadis {
 	private Stop currentStop;
 	private Customer currentCustomer;
 	private Admin currentAdmin;
+	private Request currentRequest;
 	
 	public Admin getCurrentAdmin() {
 		return currentAdmin;
@@ -29,7 +30,6 @@ public class QuoVadis {
 
 	public QuoVadis(){
 		agency = new TravelAgency();
-		currentSuggestion = new Suggestion();
 		currentResults = new HashMap<Long,Suggestion>();
 	}
 	
@@ -94,18 +94,43 @@ public class QuoVadis {
 		this.currentSuggestion = currentResults.get(id);
 	}
 	
-	public void makeDeal(String title, String message){
-		Deal d = new Deal(currentCustomer, currentSuggestion, title, message);
-		this.agency.addDeal(d);
-		this.currentCustomer.addDeal(d);
+	public void makeRequest(String title, String message){
+		Request r = new Request(currentCustomer, title, message);
+		this.agency.addRequest(r);
+		this.currentCustomer.addRequest(r);
+		this.currentRequest = r;
 	}
 	
-	public void makePersonalRequest(String title, String message){
-		PersonalRequest pr = new PersonalRequest(currentCustomer, title, message);
-		this.agency.addPersonalRequest(pr);
-		this.currentCustomer.addPersonalRequest(pr);
+	public void associateSuggestionToRequest(){
+		this.currentRequest.addSuggestion(this.currentSuggestion);
+	}
+	
+	public void createSuggestion(String title, String period, double cost){
+		Suggestion s = new Suggestion(title, period,cost);
+		this.currentSuggestion = s;
+	}
+	
+	public void createStop(String title, String description){
+		Stop s = new Stop(title, description);
+		this.currentStop = s;
 		
 	}
+	
+	public void createService(double cost, String typology, String description){
+		Service s = new Service(cost, typology, description);
+		this.currentStop.addService(s);
+	}
+	
+	public void saveStop(){
+		this.currentSuggestion.addStop(currentStop);
+		
+		
+	}
+	
+	public void saveSuggestion(){
+		this.agency.addSuggestion(this.currentSuggestion);
+	}
+	
 	
 	
 }

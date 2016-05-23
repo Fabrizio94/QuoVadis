@@ -7,22 +7,25 @@ import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 
+import quovadis.persistence.RequestDao;
+import quovadis.persistence.SuggestionDao;
 import quovadis.persistence.UserDao;
 
 public class TravelAgency {
 		
 	List<Suggestion> suggestions;
-	List<PersonalRequest> personalRequests;
-	List<Deal> deals;
+	List<Request> requests;
 	List<User> users;
 	UserDao userDAOImp;
-
+	SuggestionDao suggestionDAOImp;
+	RequestDao requestDAOImp;
+	
+	
 	EntityManagerFactory emf = EntityManagerSingleton.getInstance();
 	
 	public TravelAgency(){
 		suggestions = new LinkedList<Suggestion>();
-		personalRequests = new LinkedList<PersonalRequest>();
-		deals = new LinkedList<Deal>();
+		requests = new LinkedList<Request>();
 		users = new LinkedList<User>();
 		userDAOImp = new UserDao();
 	}
@@ -33,18 +36,11 @@ public class TravelAgency {
 	public void setSuggestions(List<Suggestion> suggestions) {
 		this.suggestions = suggestions;
 	}
-	public List<PersonalRequest> getPersonalRequests() {
-		return personalRequests;
+	
+	public List<Request> getRequests() {
+		return requests;
 	}
-	public void setPersonalRequests(List<PersonalRequest> personalRequests) {
-		this.personalRequests = personalRequests;
-	}
-	public List<Deal> getDeals() {
-		return deals;
-	}
-	public void setDeals(List<Deal> deals) {
-		this.deals = deals;
-	}
+	
 	public boolean checkSubscription(String username, String email) {
 		boolean ret = true;
 		users = userDAOImp.findAll(emf);
@@ -66,6 +62,7 @@ public class TravelAgency {
 	}
 	
 	public User getUser(String username){
+		users = userDAOImp.findAll(emf);
 		for(User u : users)
 			if(u.getUsername().equals(username))
 				return u;
@@ -74,17 +71,20 @@ public class TravelAgency {
 
 	public Map<Long, Suggestion> findSuggestions(String tag) {
 		Map<Long,Suggestion> result = new HashMap<Long,Suggestion>();
+		suggestions = suggestionDAOImp.findAll(emf);
 		for(Suggestion s : suggestions)
 			if(s.getTags().contains(tag))
 				result.put(s.getId(),s);
 		return result;
 	}
 	
-	public void addDeal(Deal d){
-		deals.add(d);
+	public void addRequest(Request r){
+		requestDAOImp.save(emf,r);
+	}
+
+	public void addSuggestion(Suggestion s) {
+		suggestionDAOImp.save(emf, s);
 	}
 	
-	public void addPersonalRequest(PersonalRequest pr){
-		personalRequests.add(pr);
-	}
+	
 }

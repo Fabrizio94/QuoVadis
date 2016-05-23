@@ -1,17 +1,19 @@
 package quovadis.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "User.findAll", query = "select u from User u")
 public abstract class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	@Column (nullable = false)
 	private String name;
@@ -77,4 +79,8 @@ public abstract class User {
 		public boolean checkPassword(String password) {
 			return this.password.equals(password);
 		} 
+		
+		public long getId(){
+			return this.id;
+		}
 }

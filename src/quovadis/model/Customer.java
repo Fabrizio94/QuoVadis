@@ -3,11 +3,11 @@ package quovadis.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import quovadis.model.Deal;
 
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-
+@NamedQuery(name = "User.findRequests", query = "Select r FROM Request r, User u WHERE r.id = u.id ")
 public class Customer extends User {
 
 
@@ -21,12 +21,9 @@ public class Customer extends User {
 	}
 	
 	
-	public void addDeal(Deal d){
-		requests.add(d);
-		wishList.put(d.getSuggestion().getId(),d.getSuggestion());
+	public void addRequest(Request r){
+		requests.add(r);
+		wishList.put(r.getSuggestion().getId(),r.getSuggestion());
 	}
 	
-	public void addPersonalRequest(PersonalRequest pr){
-		requests.add(pr);
-	}
 }
