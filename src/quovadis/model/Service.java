@@ -2,7 +2,6 @@ package quovadis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Service {
@@ -13,8 +12,6 @@ public class Service {
 	private String typology;
 	@Column(nullable = false)
 	private String description;
-	@OneToMany
-	private Stop stop;
 	
 	public Service(double cost, String typology, String description){
 		this.cost = cost;

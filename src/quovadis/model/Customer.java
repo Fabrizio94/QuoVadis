@@ -11,8 +11,9 @@ import javax.persistence.OneToMany;
 public class Customer extends User {
 
 
-	@OneToMany
+	@OneToMany(mappedBy= "customer")
 	private List<Request> requests;
+	
 	private Map<Long,Suggestion> wishList; 
 	
 	public Customer(String name, String surname, String username, String password, String email) {

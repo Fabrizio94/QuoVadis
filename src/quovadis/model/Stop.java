@@ -8,7 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import quovadis.persistence.ServiceDao;
 
@@ -23,7 +24,8 @@ public class Stop {
 	private String title;
 	@Column(nullable = false)
 	private String description;
-	@ManyToMany
+	@OneToMany
+	@JoinColumn(name="stop_id")
 	private List<Service> services;
 	
 	private ServiceDao serviceDAOImp;
