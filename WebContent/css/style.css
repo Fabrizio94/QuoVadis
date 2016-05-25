@@ -25,19 +25,19 @@ body a{
 }
 .breadcrumb{
 	margin:2em 0;
-}	
+}
 a#toTop {
   margin-right: 0!IMPORTANT;
 }
 /*-- header_top --*/
 .banner{
-  background: url(../images/bnr2.jpg) no-repeat 0px -125px;
+  background: url(../images/sfondo5.jpg) no-repeat 0px -125px;
   min-height: 855px;
   background-size: cover;
   position: relative;
 }
 .head-logo h1 a{
-	font-family: 'Iceland', cursive;
+	font-family: 'College', cursive;
 	font-weight:600;
 	text-decoration:none;
 	color: #ffa800;
@@ -537,7 +537,7 @@ ul.callbacks2_tabs li{
 .product-lists h3,.product-grids h3{
 	 color:#ffa800;
 	 font-size:1.8em;
-	 font-weight:600;	 
+	 font-weight:600;
 }
 .product-lists{
 	padding:0;
@@ -546,9 +546,9 @@ ul.list1{
 	margin-top:1.5em;
 }
 ul.list1 li{
-	display:block;	
+	display:block;
 }
-ul.list1 li a{ 
+ul.list1 li a{
 	display:block;
 	text-decoration:none;
 	font-size:0.9em;
@@ -572,10 +572,10 @@ ul.list1 li a:hover{
 	width:100%;
 	margin-bottom:1.5em;
 }
-.product-grid h4{	
+.product-grid h4{
 	margin-bottom:7px;
 	font-size:1.1em;
-	font-weight:600;	
+	font-weight:600;
 }
 .product-grid h4 a{
 	text-decoration:none;
@@ -826,7 +826,7 @@ font-size: 0.88em;
 .grid_4{
 	background:#fff;
 	padding:2em 0em 0em 0em;
-}  
+}
 .grid_5{
 	background:#fff;
 	padding:1em 0 2em 0;
@@ -1008,7 +1008,7 @@ h5.typ1{
 	margin-bottom:0.5em;
 	padding:12px 0;
 	border-bottom: 1px solid #999999;
-	border-top: 1px solid #999999; 
+	border-top: 1px solid #999999;
 }
 .team-grid p{
 margin:1.5em 0 2em 0;
@@ -1416,7 +1416,7 @@ ul.list1 li a {
 .banner-info h3 {
   font-size: 1.8em;
 }
-.banner {  
+.banner {
   background: url(../images/bnr2.jpg) no-repeat 0px 0px;
   min-height: 481px;
   background-size:cover;
@@ -1541,7 +1541,7 @@ span.menu{
 	display: block;
   text-align: right;
   padding-bottom: 0.5em;
-  cursor: pointer;	
+  cursor: pointer;
   position:relative;
 }
 .top-menu span img{
@@ -1576,7 +1576,7 @@ span.menu{
 	position: absolute;
 	width: 100%;
 	text-align: center;
-	left: 0%;	
+	left: 0%;
 	background:#fff;
 }
 .top-menu  ul li a:hover,.top-menu ul li a.active:hover{
@@ -1940,13 +1940,3 @@ ul.list1 li a {
   line-height: 1.5em;
 }
 }
-
-
-
-
-
-
-
-
-
-
