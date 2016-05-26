@@ -2,17 +2,22 @@ package quovadis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Service {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	@Column(nullable = false)
 	private double cost;
 	@Column(nullable = false)
 	private String typology;
 	@Column(nullable = false)
 	private String description;
-	
+	public Service(){}
 	public Service(double cost, String typology, String description){
 		this.cost = cost;
 		this.typology = typology;

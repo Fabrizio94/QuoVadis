@@ -31,7 +31,7 @@ public class Stop {
 	private ServiceDao serviceDAOImp;
 	
 	EntityManagerFactory emf = EntityManagerSingleton.getInstance();
-	
+	public Stop(){}
 	
 	public Stop(String title, String description){
 		this.title = title;

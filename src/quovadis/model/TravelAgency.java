@@ -7,16 +7,17 @@ import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 
+import quovadis.persistence.CustomerDao;
 import quovadis.persistence.RequestDao;
 import quovadis.persistence.SuggestionDao;
-import quovadis.persistence.UserDao;
+
 
 public class TravelAgency {
 		
 	List<Suggestion> suggestions;
 	List<Request> requests;
-	List<User> users;
-	UserDao userDAOImp;
+	List<Customer> customers;
+	CustomerDao customerDAOImp;
 	SuggestionDao suggestionDAOImp;
 	RequestDao requestDAOImp;
 	
@@ -26,8 +27,8 @@ public class TravelAgency {
 	public TravelAgency(){
 		suggestions = new LinkedList<Suggestion>();
 		requests = new LinkedList<Request>();
-		users = new LinkedList<User>();
-		userDAOImp = new UserDao();
+		customers = new LinkedList<Customer>();
+		customerDAOImp = new CustomerDao();
 	}
 
 	public List<Suggestion> getSuggestions() {
@@ -43,12 +44,12 @@ public class TravelAgency {
 	
 	public boolean checkSubscription(String username, String email) {
 		boolean ret = true;
-		users = userDAOImp.findAll(emf);
+		customers = customerDAOImp.findAll(emf);
 		
-		for(User u : users){
-			if(u.getUsername().equals(username))
+		for(Customer c : customers){
+			if(c.getUsername().equals(username))
 				return false;
-			if(u.getEmail().equals(email))
+			if(c.getEmail().equals(email))
 				return false;
 		}
 		return ret;
@@ -56,16 +57,16 @@ public class TravelAgency {
 		
 	}
 	
-	public void createCustomer(String name, String surname, String username, String password, String email) {
-		User u = new Customer(name,surname,username,password,email);
-		userDAOImp.save(emf, u);
+	public void addCustomer(Customer c) {
+		
+		customerDAOImp.save(emf, c);
 	}
 	
-	public User getUser(String username){
-		users = userDAOImp.findAll(emf);
-		for(User u : users)
-			if(u.getUsername().equals(username))
-				return u;
+	public Customer getCustomer(String username){
+		customers = customerDAOImp.findAll(emf);
+		for(Customer c : customers)
+			if(c.getUsername().equals(username))
+				return c;
 		return null;
 	}
 

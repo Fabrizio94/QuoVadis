@@ -8,7 +8,12 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate">
+		<attributes>
+			<attribute name="owner.project.facets" value="#system#;jpt.jpa"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/Users/Fabrizio/Documents/Librerie/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/librerie/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

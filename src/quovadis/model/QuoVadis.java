@@ -10,18 +10,10 @@ public class QuoVadis {
 	private Map<Long, Suggestion> currentResults;
 	private Stop currentStop;
 	private Customer currentCustomer;
-	private Admin currentAdmin;
+	
 	private Request currentRequest;
 	
-	public Admin getCurrentAdmin() {
-		return currentAdmin;
-	}
-
-
-	public void setCurrentAdmin(Admin currentAdmin) {
-		this.currentAdmin = currentAdmin;
-	}
-
+	
 
 	public void setCurrentResults(Map<Long, Suggestion> currentResults) {
 		this.currentResults = currentResults;
@@ -52,7 +44,7 @@ public class QuoVadis {
 	public void setCurrentResults(HashMap<Long,Suggestion> currentResults) {
 		this.currentResults = currentResults;
 	}
-	public User getCurrentCustomer() {
+	public Customer getCurrentCustomer() {
 		return currentCustomer;
 	}
 	public void setCurrentCustomer(Customer currentCustomer) {
@@ -65,20 +57,24 @@ public class QuoVadis {
 		this.currentStop = currentStop;
 	}
 	
-	public void subscribe(String name, String surname, String username, String password, String email){
-		if(this.agency.checkSubscription(username,email)) //controllo i dati, true se non presenti
-			this.agency.createCustomer(name,surname,username,password,email);
-		else
-			System.out.println("Username/Email gi√† esistenti");
+	public boolean subscribe(Customer c){
+		boolean result = true;
+		if(this.agency.checkSubscription(c.getUsername(),c.getEmail())){
+			//controllo i dati, true se non presenti	
+			this.agency.addCustomer(c);}
+		else{
+			System.out.println("Username/Email gia† esistenti");
+			result = false;
+		}
+		return result;	
 	}
 	
 	public void login(String username, String password) throws ClassNotFoundException{
-		User u = this.agency.getUser(username);
-		if(u != null && u.checkPassword(password))
-			if(u.getClass() == Class.forName("quovadis.model.Customer"))
-				this.currentCustomer = (Customer) u;
-			else
-				this.currentAdmin = (Admin) u;
+		Customer c= this.agency.getCustomer(username);
+		if(c != null && c.checkPassword(password))
+			
+				this.currentCustomer =c;
+		
 		else
 			System.out.println("login fallito");
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import quovadis.model.Suggestion;
 
@@ -50,7 +51,8 @@ public class SuggestionDao implements Dao<Suggestion> {
 	@SuppressWarnings("unchecked")
 	public List<String> getTags(EntityManagerFactory emf, Suggestion s){
 		EntityManager em = emf.createEntityManager();
-		List<String> result = em.createNamedQuery("Suggestion.getTags").getResultList();
+		Query query  = em.createQuery("Select s.TAG from Suggestion s where s.id ="+s.getId());		
+		List<String> result =query.getResultList();
 		em.close();
 		return result;
 	}

@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
+
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
@@ -19,10 +19,9 @@ import quovadis.persistence.SuggestionDao;
 
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "Suggestion.findAll", query = "select s from Suggestion s"),
-	@NamedQuery(name = "Suggestion.getTags", query = "select s from Suggestion s JOIN s.tags where Suggestion_id = s.id")
-})
+
+@NamedQuery(name = "Suggestion.findAll", query = "select s from Suggestion s")
+
 
 public class Suggestion {
 	@Id
@@ -39,16 +38,20 @@ public class Suggestion {
 	@JoinColumn(name="suggestion_id")
 	private List<Stop> stops;
 	
-	@ElementCollection
-	@CollectionTable(name = "tags")
-	private List<String> tags;
+	 @ElementCollection
+	  @CollectionTable(
+	  
+	        joinColumns=@JoinColumn(name="SUGGESTION_ID")
+	  )
+	  @Column(name="TAG")
+	  private List<String> tags;
 	
 	EntityManagerFactory emf = EntityManagerSingleton.getInstance();
 
 	
 	private SuggestionDao suggestionDAOImp;
 	private StopDao stopDAOImp;
-
+	public Suggestion(){}
 	public Suggestion(String title, String period, double cost){
 		this.title = title;
 		this.period = period;
